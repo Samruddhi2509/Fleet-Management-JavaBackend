@@ -1,10 +1,16 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,8 +25,10 @@ public class CityMaster {
     @Column(name = "cityName")
     private String cityName;
 
-    @Column(name = "stateId")
-    private int stateId;
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+    @JoinColumn(name = "state_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private StateMaster stateMaster;
 
     // Getters and Setters
     public int getCityId() {
@@ -39,12 +47,14 @@ public class CityMaster {
         this.cityName = cityName;
     }
 
-    public int getStateId() {
-        return stateId;
+    public StateMaster getStateMaster() {
+        return stateMaster;
     }
 
-    public void setStateId(int stateId) {
-        this.stateId = stateId;
+    public void setStateMaster(StateMaster stateMaster) {
+        this.stateMaster = stateMaster;
     }
+
+    
 }
 

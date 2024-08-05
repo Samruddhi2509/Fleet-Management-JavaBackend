@@ -37,19 +37,19 @@ public class CityMasterController {
         return service.saveCity(city);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CityMaster> updateCity(@PathVariable int id, @RequestBody CityMaster cityDetails) {
-        Optional<CityMaster> city = service.getCityById(id);
-        if (city.isPresent()) {
-            CityMaster updatedCity = city.get();
-            updatedCity.setCityName(cityDetails.getCityName());
-            updatedCity.setStateId(cityDetails.getStateId());
-            service.saveCity(updatedCity);
-            return ResponseEntity.ok(updatedCity);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<CityMaster> updateCity(@PathVariable int id, @RequestBody CityMaster cityDetails) {
+//        Optional<CityMaster> city = service.getCityById(id);
+//        if (city.isPresent()) {
+//            CityMaster updatedCity = city.get();
+//            updatedCity.setCityName(cityDetails.getCityName());
+//          updatedCity.setStateId(cityDetails.getStateId());
+//            service.saveCity(updatedCity);
+//            return ResponseEntity.ok(updatedCity);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCity(@PathVariable int id) {
